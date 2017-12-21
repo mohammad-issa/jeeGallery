@@ -44,7 +44,7 @@ class App extends Component {
 
         </header>
         {this.props.currentUser ? <ul> {this.renderTasks()} </ul> : ''}
-
+        <a href="/test">Click Me</a>
       </div>
     );
   }
