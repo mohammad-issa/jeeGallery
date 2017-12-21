@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import ReactDOM from 'react-dom';
+import { Meteor } from 'meteor/meteor';
 
 import { Tasks } from '../../api/tasks.js';
 
@@ -20,6 +21,7 @@ class App extends Component {
       count : 10,
     }
   }
+
   render() {
     return (
       <div className="container">
@@ -41,10 +43,8 @@ class App extends Component {
           </form>
 
         </header>
- 
-        <ul>
-          {this.renderTasks()}
-        </ul>
+        {this.props.currentUser ? <ul> {this.renderTasks()} </ul> : ''}
+
       </div>
     );
   }
@@ -57,12 +57,7 @@ class App extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
-    Tasks.insert({
-      text,
-      createdAt: new Date(), // current time
-    });
- 
-    // Clear form
+    Meteor.call('tasks.insert', text);
     ReactDOM.findDOMNode(this.refs.textInput).value = '';
   }
   
@@ -81,10 +76,12 @@ class App extends Component {
 }
 
 export default withTracker(() => {
+  Meteor.subscribe('tasks');
   return {
     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
     checkedTasks: Tasks.find({ checked: { $ne: true } }).fetch(),
     uncheckedCount: Tasks.find({ checked: { $ne: true } }).count(),
     totalCount: Tasks.find().count(),
+    currentUser: Meteor.user(),
   };
 })(App);

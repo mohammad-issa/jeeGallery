@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor'
 
 import { Tasks } from '../../api/tasks.js';
 // Task component - represents a single todo item
 export default class Task extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      taskChecked : this.props.task.checked
+    }
+  }
   toggleChecked() {
     // Set the checked property to the opposite of its current value
-    Tasks.update(this.props.task._id, {
-      $set: { checked: !this.props.task.checked },
-    });
+    this.setState({
+      taskChecked : !this.state.taskChecked
+    },() => Meteor.call('task.checked',this.props.task._id,this.state.taskChecked))
   }
  
   deleteThisTask() {
-  	// console.log('value',{this.props.task.checked});
-  	// console.log('edit',{!!this.props.task.checked});
-    Tasks.remove(this.props.task._id);
+	 Meteor.call('task.remove',this.props.task._id,this.props.task.userId, function (err, res){
+    if(err){
+        console.log("err", err);
+    }
+   })
   }
  
   render() {
-    // Give tasks a different className when they are checked off,
-    // so that we can style them nicely in CSS
     const taskClassName = this.props.task.checked ? 'checked' : '';
- 
     return (
       <li className={taskClassName}>
         <button className="delete" onClick={this.deleteThisTask.bind(this)}>
@@ -33,8 +39,9 @@ export default class Task extends Component {
           checked={!!this.props.task.checked}
           onClick={this.toggleChecked.bind(this)}
         />
- 
         <span className="text">{this.props.task.text}</span>
+        <br/>
+    	<span>{this.props.task.user}</span>
       </li>
     );
   }
