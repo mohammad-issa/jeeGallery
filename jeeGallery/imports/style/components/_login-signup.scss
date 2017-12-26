@@ -1,0 +1,26 @@
+.login-box{
+	&__cont{
+		background: $white-background;
+		padding: 40px;
+    	border-radius: 1px;
+	    margin-top: 55px;
+	    border: 1px solid ;
+	    border-color:$border-color;
+    	// @include cardShadow();
+    	@media screen and (max-width:442px){
+    		padding :16px;
+	    	margin-top: 22px;
+			background: $main-background;
+			border:none;
+
+    	}
+    	&__heading{
+		    padding: 20px 0;
+    		text-align: center;
+    	}
+    	&__switch-to{
+    		text-align: center;
+    		padding: 18px 0 0;
+    	}
+	}
+}
