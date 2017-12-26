@@ -42,7 +42,7 @@ class App extends Component {
           <a href="/test">go to test</a>
         </header>
         {this.props.currentUser ? <ul> {this.renderTasks()} </ul> : ''}
-
+        <a href="/test">Click Me</a>
       </div>
     );
   }
