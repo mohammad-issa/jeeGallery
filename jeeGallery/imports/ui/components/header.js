@@ -1,22 +1,36 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 
+import AddPost from './addPost';
+
 export default class Header extends Component {
 
 	constructor(props){
 		super(props);
+		this.state = {
+			postPopup : false
+		}
 		this.logout = this.logout.bind(this) 
+		this.addPostPopup = this.addPostPopup.bind(this) 
+		this.closePostPopup = this.closePostPopup.bind(this) 
 		this.signOutBtn = this.signOutBtn.bind(this) 
 	}
 
   	render() {
 		return(
-			<div>
-				<header>
-					<h1>header</h1>
-					<img src="https://dummyimage.com/50x25/000/fff"/>
-					{this.signOutBtn()}
-				</header>
+			<div className="app-header">
+				<div className="container">
+					<header>
+						<div className="left-menu">
+							<a href="/home">
+								<img src="https://dummyimage.com/90x40/000/fff"/>
+							</a>
+
+						</div>
+						{this.signOutBtn()}
+					</header>
+				</div>
+				{this.state.postPopup && <AddPost close={this.closePostPopup}/>}
 			</div>
 		)
 	}
@@ -26,9 +40,28 @@ export default class Header extends Component {
 			FlowRouter.redirect('/');
 		},100)
 	}
+	addPostPopup(){
+		this.setState({
+			postPopup : true
+		})
+	}
+	closePostPopup(){
+		this.setState({
+			postPopup : false
+		})
+	}
 	signOutBtn(){
 		if(Meteor.userId()){
-			return <button onClick={this.logout}>signout</button>
+			return (
+				<div className="right-menu">
+					<div className="add-post">
+						<span onClick={this.addPostPopup}><i className="icon-plus" title="add post"></i></span>
+					</div>
+					<div className="logout">
+						<span onClick={this.logout}><i className="icon-log-out" title="logout"></i></span>
+					</div>
+				</div>
+			)
 		}
 	}
 }

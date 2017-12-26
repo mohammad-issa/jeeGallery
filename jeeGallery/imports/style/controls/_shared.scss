@@ -5,6 +5,9 @@ body{
 h1,h2,h3,h4,h5,h6,p{
 	margin :0;
 }
+.app-body{
+	margin-top:32px;
+}
 .basic-input{
 	width:100%;
 	padding:8px;
@@ -26,4 +29,7 @@ h1,h2,h3,h4,h5,h6,p{
 }
 a,a:hover,a:focus,a:active{
     text-decoration: none;
+}
+textarea {
+    resize: vertical;
 }

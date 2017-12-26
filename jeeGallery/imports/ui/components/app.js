@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <header>
+        <div>
           <h1>Todo List (Checked {this.props.totalCount - this.props.uncheckedCount} of {this.props.totalCount})</h1>
           <div>
             <label>Hide Check Tasks</label>
@@ -40,7 +40,7 @@ class App extends Component {
             />
           </form>
           <a href="/test">go to test</a>
-        </header>
+        </div>
         {this.props.currentUser ? <ul> {this.renderTasks()} </ul> : ''}
         <a href="/test">Click Me</a>
       </div>
