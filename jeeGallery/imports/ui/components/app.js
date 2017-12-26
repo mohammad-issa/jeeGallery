@@ -6,7 +6,6 @@ import { Meteor } from 'meteor/meteor';
 import { Tasks } from '../../api/tasks.js';
 
 import Task from './task.js';
-import AccountsUIWrapper from './accountsUIWapper.js';
 
  
 class App extends Component {
@@ -32,7 +31,6 @@ class App extends Component {
             <input type="checkbox" onChange={this.handleChecked}/>
           </div>
 
-          <AccountsUIWrapper />
 
           <form className="new-task" onSubmit={this.handleSubmit} >
             <input
@@ -41,7 +39,7 @@ class App extends Component {
               placeholder="Type to add new tasks"
             />
           </form>
-
+          <a href="/test">go to test</a>
         </header>
         {this.props.currentUser ? <ul> {this.renderTasks()} </ul> : ''}
 

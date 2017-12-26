@@ -1,0 +1,29 @@
+body{
+	background :$main-background;
+	font-family: 'Open Sans', sans-serif;
+}
+h1,h2,h3,h4,h5,h6,p{
+	margin :0;
+}
+.basic-input{
+	width:100%;
+	padding:8px;
+	outline:none;
+	background: $main-background;
+	border-radius:2px;
+    border: 1px solid $border-color;
+    margin: 4px 0;
+    &--submit{
+		background: $accent-color;
+    	color: $white-background;
+    	text-transform: capitalize;
+    	font-weight: 600;
+    	margin: 8px 0;
+    }
+    &--error{
+	    background: rgba(255, 0, 0, 0.2);
+    }
+}
+a,a:hover,a:focus,a:active{
+    text-decoration: none;
+}
