@@ -1,5 +1,9 @@
-@import "controles/_variables";
-@import "controles/_mixin";
-@import "controles/_shared";
+@import "controls/_variables";
+@import "controls/_mixin";
+@import "controls/_shared";
+@import "components/_header";
 @import "components/_homepage";
 @import "components/_login-signup";
+@import "components/_add-post";
+// @import "icons/style";
+

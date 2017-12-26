@@ -6,7 +6,7 @@ import {LoginLayout} from '../imports/layout/loginLayout';
 import {MainLayout} from '../imports/layout/mainLayout';
 
 import LoginSignup from '../imports/ui/components/loginSignup';
-import App from '../imports/ui/components/app';
+import Explore from '../imports/ui/components/explore';
 import Test from '../imports/ui/components/test';
 import NotFound from '../imports/ui/components/notfound';
 
@@ -28,7 +28,7 @@ FlowRouter.route('/home',{
 	action(){
 		if(Meteor.userId()){
 			mount(MainLayout,{
-				content:(<App/>)
+				content:(<Explore/>)
 			})
 		}
 		else{
