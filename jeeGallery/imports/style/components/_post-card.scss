@@ -1,0 +1,30 @@
+.post-card{
+	background:$white-background;
+	border-radius: 4px;
+    overflow: hidden;
+    @include cardShadow();
+	&__header{
+		padding: 6px 12px;
+		&__publisher-image{
+			
+		}
+		&__publisher-name{
+
+		}
+	}
+	&__post-image{
+		img{
+			width: 100%;
+			height: auto;
+		}
+	}
+	&__footer{
+		padding: 6px 12px;
+		&__ctrl{
+			&__like{
+	   			font-size: 24px;
+    			cursor: pointer;
+			}
+		}
+	}
+}

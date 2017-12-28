@@ -4,25 +4,39 @@ import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
 import { Posts } from '../../api/posts.js';
+import PostCard from '../../ui/components/postCard';
  
 class Explore extends Component {
   constructor(props) {
     super(props);
+    this.renderCards = this.renderCards.bind(this); 
   }
 
   render() {
     return (
       <div className="container">
-        <h1>Home</h1>
+        <div className="row">
+          <div className="col-md-6 col-md-push-3">
+            <div className="post-cards">
+              {this.renderCards()}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
+  renderCards(){
+    return this.props.posts.map((post,i) => 
+      <PostCard key={i} post={post}/>
+    );
+  }
 }
-
 export default withTracker(() => {
-  Meteor.subscribe('tasks');
+  Meteor.subscribe('posts');
+  Meteor.subscribe('users');
   return {
     posts: Posts.find({}, { sort: { createdAt: -1 } }).fetch(),
     totalPost: Posts.find().count(),
+    // users : Meteor.users.find({},{fields: {_id:1,username:1}}).fetch()
   };
 })(Explore);
