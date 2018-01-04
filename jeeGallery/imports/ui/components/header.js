@@ -23,7 +23,7 @@ export default class Header extends Component {
 					<header>
 						<div className="left-menu">
 							<a href="/home">
-								<img src="https://dummyimage.com/90x40/000/fff"/>
+								<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png"/>
 							</a>
 
 						</div>

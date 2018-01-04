@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
 import { Posts } from '../../api/posts.js';
+import { Comments } from '../../api/comments.js';
+
 import PostCard from '../../ui/components/postCard';
  
 class Explore extends Component {
@@ -34,9 +36,10 @@ class Explore extends Component {
 export default withTracker(() => {
   Meteor.subscribe('posts');
   Meteor.subscribe('users');
+  Meteor.subscribe('comments');
   return {
     posts: Posts.find({}, { sort: { createdAt: -1 } }).fetch(),
     totalPost: Posts.find().count(),
-    // users : Meteor.users.find({},{fields: {_id:1,username:1}}).fetch()
+    comments : Comments.find({}, { sort: { createdAt: -1 } }).fetch(),
   };
 })(Explore);

@@ -6,10 +6,10 @@ export const Posts = new Mongo.Collection('posts');
 
 if (Meteor.isServer) {
 	
-	Meteor.publish('posts', function postsPublication() {
+	Meteor.publish('posts',() => {
     	return Posts.find({});
 	});
-	Meteor.publish('users', function usersPublication() {
+	Meteor.publish('users', () => {
     	return Meteor.users.find({},{fields: {_id:1,username:1}});
 	});
 
