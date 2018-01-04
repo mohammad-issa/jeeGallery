@@ -1,14 +1,16 @@
 .app-header{
 	background:$white-background;
     border-bottom: 1px solid $border-color;
-    padding: 12px 0;
+    padding: 8px 0;
 	header{
 	    display: flex;
 	    display: -webkit-flex;
 	    justify-content: space-between;
 	    align-items: center;
 	    .left-menu{
-	    	
+	    	img{
+	    		height: 36px;
+	    	}
 	    }
 	    .right-menu{
 	    	display: -webkit-flex;
